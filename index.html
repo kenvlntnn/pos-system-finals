@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PAKPAK POS System</title>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald:ital,wght@0,500;0,700;1,700&family=Poppins:wght@300;400;500;600&family=Courier+Prime&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <div class="pos-container">
+        <section class="menu-section">
+            <div class="menu-header">
+                <div class="header-title-group">
+                    <h1>PAKPAK <span>POS</span></h1>
+                    <div id="live-clock" class="live-clock">Loading time...</div>
+                </div>
+                <input type="text" id="search-bar" placeholder="Search menu items...">
+            </div>
+            <div class="menu-grid" id="menu-grid">
+                </div>
+        </section>
+
+        <section class="sidebar">
+            <div class="order-panel">
+                <h2>Current Order</h2>
+                <ul id="order-list">
+                    </ul>
+            </div>
+            
+            <div class="checkout-panel">
+                <h2>Total: <span id="total-display">₱0</span></h2>
+                <div class="action-buttons">
+                    <button class="btn-print" id="btn-print">Print Last</button>
+                    <button class="btn-pay" id="btn-pay">Checkout</button>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div id="payment-modal" class="modal hidden">
+        <div class="modal-content">
+            <button class="close-modal" id="close-modal">&times;</button>
+            
+            <div id="screen-select-method" class="modal-screen">
+                <h2>Select Payment Method</h2>
+                <h3 class="modal-total">Amount Due: <span id="modal-amount-due">₱0</span></h3>
+                <div class="payment-options">
+                    <button class="pay-method-btn" data-method="cash">CASH</button>
+                    <button class="pay-method-btn" id="btn-card" data-method="card">CARD</button>
+                    <button class="pay-method-btn" id="btn-online" data-method="online">ONLINE</button>
+                </div>
+                <p id="lockout-msg" class="error-text hidden">Digital payments locked. Try again later.</p>
+            </div>
+
+            <div id="screen-cash" class="modal-screen hidden">
+                <h2>Cash Payment</h2>
+                <input type="number" id="modal-cash-input" class="payment-input" placeholder="Enter cash amount">
+                <button class="btn-pay" id="btn-confirm-cash">Confirm Payment</button>
+            </div>
+
+            <div id="screen-reference" class="modal-screen hidden">
+                <h2 id="ref-title">Process Payment</h2>
+                <p id="ref-instructions" class="ref-instructions"></p>
+                
+                <div id="qr-container" class="hidden">
+                    <img id="qr-image" src="" alt="Payment QR Code">
+                </div>
+
+                <input type="text" id="modal-ref-input" class="payment-input" placeholder="Enter Reference Number">
+                <p class="error-text" id="ref-error-msg"></p>
+                <button class="btn-pay" id="btn-confirm-ref">Verify & Confirm</button>
+            </div>
+
+            <div id="screen-receipt" class="modal-screen hidden">
+                <h2>Transaction Complete</h2>
+                <div class="receipt-container">
+                    <pre id="receipt-text" class="receipt-paper"></pre>
+                </div>
+                <button class="btn-pay" id="btn-new-order">New Order</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
